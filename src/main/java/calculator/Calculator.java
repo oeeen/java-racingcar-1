@@ -1,40 +1,30 @@
 package calculator;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 public class Calculator {
-    double add(double a, double b) {
-        return a + b;
+    private static Map<String, Operator> operatorMap = new HashMap<>();
+
+    static {
+        operatorMap.put("+", Operator.PLUS);
+        operatorMap.put("-", Operator.MINUS);
+        operatorMap.put("*", Operator.MULTIPLY);
+        operatorMap.put("/", Operator.DIVIDE);
     }
 
-    double subtract(double a, double b) {
-        return a - b;
+//    double calculate(double a, String operator, double b) {
+//        return Optional.ofNullable(operatorMap.get(operator))
+//                .orElseThrow(() -> new IllegalArgumentException("잘못된 연산자 입력입니다."))
+//                .mapCalculate(a, b);
+//    }
+
+    double calculate(double a, String operator, double b) {
+        return Operator.calculate(operator, a, b);
     }
 
-    double multiply(double a, double b) {
-        return a * b;
-    }
-
-    double divide(double a, double b) {
-        return a / b;
-    }
-
-    double calculate(double a, String operator, double b) throws Exception {
-        if (operator.equals("+")) {
-            return add(a, b);
-        }
-        if (operator.equals("-")) {
-            return subtract(a, b);
-        }
-        if (operator.equals("*")) {
-            return multiply(a, b);
-        }
-        if (operator.equals("/")) {
-            return divide(a, b);
-        }
-
-        throw new IllegalArgumentException("올바른 연산자가 아닙니다.");
-    }
-
-    double calculateAll(String[] inputs) throws Exception {
+    double calculateAll(String[] inputs) {
         if (inputs.length % 2 == 0) {
             throw new IllegalArgumentException("잘못된 입력입니다.");
         }

@@ -18,22 +18,22 @@ public class CalculatorTest {
 
     @Test
     void 덧셈() {
-        assertEquals(3.8, cal.add(2.3, 1.5), 0.01);
+        assertEquals(3.8, cal.calculate(2.3, "+", 1.5), 0.01);
     }
 
     @Test
     void 뺄셈() {
-        assertEquals(0.8, cal.subtract(2.3, 1.5), 0.01);
+        assertEquals(0.8, cal.calculate(2.3, "-", 1.5), 0.01);
     }
 
     @Test
     void 곱셈() {
-        assertEquals(6.6, cal.multiply(3.3, 2));
+        assertEquals(6.6, cal.calculate(3.3, "*", 2));
     }
 
     @Test
     void 나눗셈() {
-        assertEquals(2, cal.divide(4.4, 2.2));
+        assertEquals(2, cal.calculate(4.4, "/", 2.2));
     }
 
     @Test
